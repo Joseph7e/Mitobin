@@ -59,7 +59,7 @@ python3 midori_convert_to_mitobin.py midori_gene.fasta
 
 ## GENBANK refseq mitochondrial genomes
 
-mitobin.py will install this database natively if no reference file exists so no need to worry. we got you. It basically just download all the genbank files from ftp://ftp.ncbi.nlm.nih.gov/refseq/release/mitochondrion/ and converts them to mitobin FAA and FNA files.
+mitobin.py will install this database natively if no reference file exists. It will basically just download all the genbank files from ftp://ftp.ncbi.nlm.nih.gov/refseq/release/mitochondrion/ and converts them to mitobin FAA and FNA files.
 
 
 ## Some nematode specific databases.
