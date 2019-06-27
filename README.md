@@ -52,6 +52,10 @@ The conversion to the mitobin format is a bit complex for this database since FA
 A couple files are required for this. 'synonyms_updated.tsv', 'expanded_ncbi_taxonomy.tsv', and 'genetic_codes_dates_taxids.txt'
 The 'genetic_codes_dates_taxids.txt' file is a lookup from taxid to the mitochodrial genetic code. I looked up the genetic codes for every unique genus, this involved a lot of queries onto the NCBI ftp site and took awhile. A total of nine different genetic codes were found, most are 5, 2, 9, or 4. https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi
 
+```
+python3 midori_convert_to_mitobin.py midori_gene.fasta
+```
+
 
 ## GENBANK refseq mitochondrial genomes
 
@@ -61,10 +65,13 @@ mitobin.py will install this database natively if no reference file exists so no
 ## Some nematode specific databases.
 
 #### QBOL
-QBOL database was initiated by the European Plant Protection Agency for quarantined plant-parasitic nematodes
+QBOL database was initiated by the European Plant Protection Agency for quarantined plant-parasitic nematodes. I had to make a sort of webscarping hack since they don't make bulk downloads easy. Use at your won risk. Before I run the script I first grab a list of all the taxon ids and species names from the organisms page.
 
-
-
+```
+wget "https://qbank.eppo.int/nematodes/organisms"
+grep -o "/taxon/.*/" organisms | awk -F'/' 'BEGIN { OFS = ","} {print $3,$4}' | sed 's/">//g' | sed 's/<//g' | grep -v '%' > qbank_ids
+python3 qbank_webscrape.py qbank_ids
+```
 
 
 
